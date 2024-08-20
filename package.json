@@ -10,7 +10,6 @@
     "lint": "eslint .",
     "format": "prettier '**/*.{js,ts,md,yml,json}' --write",
     "version": "npm run lint",
-    "postversion": "git push && git push --tags",
     "prepare": "husky || true"
   },
   "repository": {
