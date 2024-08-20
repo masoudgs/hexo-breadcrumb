@@ -11,7 +11,7 @@
     "format": "prettier '**/*.{js,ts,md,yml,json}' --write",
     "version": "npm run lint",
     "postversion": "git push && git push --tags",
-    "prepare": "husky install"
+    "prepare": "husky || true"
   },
   "repository": {
     "type": "git",
@@ -34,16 +34,16 @@
   },
   "devDependencies": {
     "@types/hexo": "3.8.12",
-    "@typescript-eslint/eslint-plugin": "6.21.0",
-    "@typescript-eslint/parser": "6.21.0",
-    "eslint": "8.56.0",
+    "@typescript-eslint/eslint-plugin": "8.2.0",
+    "@typescript-eslint/parser": "8.2.0",
+    "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-import-resolver-typescript": "3.6.1",
     "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-prettier": "5.1.3",
-    "husky": "9.0.10",
-    "lint-staged": "15.2.2",
-    "typescript": "5.3.3"
+    "eslint-plugin-prettier": "5.2.1",
+    "husky": "9.1.5",
+    "lint-staged": "15.2.9",
+    "typescript": "5.5.4"
   },
   "husky": {
     "hooks": {
