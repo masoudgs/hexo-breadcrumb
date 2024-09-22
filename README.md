@@ -5,15 +5,6 @@
 
 A Hexo plugin to generate breadcrumb navigation for post and page layouts.
 
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Integration with Hexo themes](#integration-with-hexo-themes)
-- [License](#license)
-
 ## Features
 
 - Compatible with post and page layouts.
