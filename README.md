@@ -3,16 +3,7 @@
 [![NPM](https://img.shields.io/npm/v/hexo-breadcrumb)](https://www.npmjs.com/package/hexo-breadcrumb)
 [![License](https://img.shields.io/github/license/msudgh/hexo-breadcrumb)](LICENSE)
 
-A Hexo plugin to generate breadcrumbs for post and page layouts.
-
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Integration with Hexo themes](#integration-with-hexo-themes)
-- [License](#license)
+A Hexo plugin to generate breadcrumb navigation for post and page layouts.
 
 ## Features
 
