@@ -12,7 +12,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json && npm run bundle",
     "build:watch": "tsc --watch",
-    "bundle": "node esbuild.config.cjs",
+    "bundle": "node esbuild.config.mjs",
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
     "format:check": "prettier '**/*.{js,ts,md,yml,json}' --check",
