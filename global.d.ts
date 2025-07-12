@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 import type { Locals } from 'hexo';
 export type AvailableTokens = 'home' | 'category' | 'title';
 export type Layout = 'post' | 'page';
@@ -20,7 +19,6 @@ export interface Breadcrumb {
 export type LayoutData = ((Locals.Post | Locals.Page) & { layout: Layout }) & {
   breadcrumb: string;
 };
-
 export type DataCategory = Locals.Category[];
 export type Link = { url: string; title: string };
 export type Links = Array<Link>;
