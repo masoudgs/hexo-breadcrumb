@@ -29,24 +29,24 @@ In `_config.yml` file, specify the breadcrumb settings as following:
 breadcrumb:
   delimiter:
     # /, >, etc.
-    content: "/"
+    content: '/'
     # Applied on ::after pseudo element.
-    style: "font-weight: bold;"
+    style: 'font-weight: bold;'
   aria:
-    nav: "Breadcrumb"
+    nav: 'Breadcrumb'
   homepage:
     # Customize the title for the homepage in the breadcrumb.
-    title: Home
+    title: 'Home'
   templates:
-    - layout: post
+    - layout: 'post'
       tokens:
-        - home
-        - category
-        - title
-    - layout: page
+        - 'home'
+        - 'category'
+        - 'title'
+    - layout: 'page'
       tokens:
-        - home
-        - title
+        - 'home'
+        - 'title'
 ```
 
 ### Integration with Hexo themes

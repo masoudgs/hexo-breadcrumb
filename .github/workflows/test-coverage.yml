@@ -1,0 +1,47 @@
+name: Test Coverage
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+jobs:
+  test-coverage:
+    strategy:
+      matrix:
+        os:
+          - 'ubuntu-latest'
+          - 'windows-latest'
+          - 'macos-latest'
+        node_version:
+          - 'lts/*'
+      fail-fast: false
+      max-parallel: 1
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node_version }}
+          cache: 'pnpm'
+
+      - run: pnpm install -D tap-junit
+      - run: pnpm run test:coverage --reporter=tap | pnpm exec tap-junit > junit.xml
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: junit.xml,!./cache
+          fail_ci_if_error: true

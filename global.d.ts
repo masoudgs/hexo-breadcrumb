@@ -1,6 +1,7 @@
-import type { Locals } from "hexo";
-export type AvailableTokens = "home" | "category" | "title";
-export type Layout = "post" | "page";
+/* eslint-disable no-var */
+import type { Locals } from 'hexo';
+export type AvailableTokens = 'home' | 'category' | 'title';
+export type Layout = 'post' | 'page';
 export type Tokens = Array<AvailableTokens>;
 export type Templates = Array<{ layout: Layout; tokens: Tokens }>;
 export interface Breadcrumb {
