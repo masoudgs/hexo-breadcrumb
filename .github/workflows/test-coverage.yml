@@ -39,11 +39,12 @@ jobs:
       - run: pnpm install -D tap-junit
       - run: pnpm run test:coverage --reporter=tap | pnpm exec tap-junit > junit.xml
       - name: Upload coverage reports to Codecov
+        if: ${{ !cancelled() && matrix.os == 'ubuntu-latest' }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && matrix.os == 'ubuntu-latest' }}
         uses: codecov/test-results-action@v1.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
