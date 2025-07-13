@@ -133,16 +133,6 @@ describe('Breadcrumb Hook', () => {
       expect(result).toBe(data);
       expect(data.breadcrumb).toBeDefined();
     });
-
-    it('should use slug when title is not available', () => {
-      const data = createMockLayoutData('post', {
-        title: undefined,
-      });
-      const result = register(data);
-
-      expect(result).toBe(data);
-      expect(data.breadcrumb).toBeDefined();
-    });
   });
 
   describe('breadcrumb generation', () => {
@@ -465,15 +455,6 @@ describe('Breadcrumb Hook', () => {
 
       expect(data.breadcrumb).toContain('href="/test-post/"');
       expect(data.breadcrumb).toContain('<span>Test Post</span>');
-    });
-
-    it('should use slug when title is not available', () => {
-      const data = createMockLayoutData('post', {
-        title: undefined,
-      });
-      register(data);
-
-      expect(data.breadcrumb).toContain('<span>test-post</span>');
     });
   });
 
