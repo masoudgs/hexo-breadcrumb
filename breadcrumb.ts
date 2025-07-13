@@ -121,22 +121,56 @@ export class Breadcrumb {
     return `${packageJson.name}-item`;
   }
 
+  private getDelimiterStyle(): string {
+    const linkClassName = this.getLinkClassName();
+    const style = `.${linkClassName}:not(:last-child)::after {
+        content: "${this._breadcrumbConfig.delimiter.content}";
+        margin-left: ${this._breadcrumbConfig.delimiter.margin};
+        ${this._breadcrumbConfig.delimiter.style}
+      }`;
+
+    return style;
+  }
+
+  private getVerticalNavigationStyle(): string {
+    const linkClassName = this.getLinkClassName();
+    const isDelimiterEnabled = this._breadcrumbConfig.delimiter.enable;
+    const navStyle = `
+      .${linkClassName}:not(:last-child) {
+        margin-bottom: ${this._breadcrumbConfig.delimiter.margin};
+      }
+      ${isDelimiterEnabled ? this.getDelimiterStyle() : ''}
+    `;
+
+    return navStyle;
+  }
+
+  private getHorizontalNavigationStyle(): string {
+    const linkClassName = this.getLinkClassName();
+    const isDelimiterEnabled = this._breadcrumbConfig.delimiter.enable;
+    const navStyle = `
+      .${linkClassName} {
+        display: inline-block;
+      }
+      .${linkClassName}:not(:last-child) {
+        margin-right: ${this._breadcrumbConfig.delimiter.margin};
+      }
+      ${isDelimiterEnabled ? this.getDelimiterStyle() : ''}
+    `;
+
+    return navStyle;
+  }
+
   /**
    * Gets the navigation style.
    */
   private getNavigationStyle(): string {
-    const linkClassName = this.getLinkClassName();
-    const navStyle = `<style>
-      .${linkClassName} + .${linkClassName}::after {
-        content: "${this._breadcrumbConfig.delimiter.content || '/'}";
-        ${this._breadcrumbConfig.delimiter.style || ''}
-      }
-      .${linkClassName}:last-child::after {
-        content: "";
-      }
-    </style>`;
+    const style =
+      this._breadcrumbConfig.render.direction === 'horizontal'
+        ? this.getHorizontalNavigationStyle()
+        : this.getVerticalNavigationStyle();
 
-    return navStyle;
+    return `<style>${style}</style>`;
   }
 
   /**
@@ -171,9 +205,16 @@ export class Breadcrumb {
   }
 
   /**
-   * Gets the navigation.
+   * Renders breadcrumb
+   * as HTML markup for the given page or post.
    */
-  private getNavigation(data: LayoutData): string {
+  public render(data: LayoutData): string {
+    const isRenderEnabled = this._breadcrumbConfig.render.enable;
+
+    if (!isRenderEnabled) {
+      return '';
+    }
+
     const links = this.getLinks(data);
     const orderedLinks = this.getOrderedLinksByTemplates(data, links);
     const navigationStyle = this.getNavigationStyle();
@@ -192,15 +233,5 @@ export class Breadcrumb {
     return (
       navigationStyle + navigationStart + navigationContent + navigationEnd
     );
-  }
-
-  /**
-   * Renders breadcrumb
-   * as HTML markup for the given page or post.
-   */
-  public render(data: LayoutData): string {
-    const navigation = this.getNavigation(data);
-
-    return navigation;
   }
 }

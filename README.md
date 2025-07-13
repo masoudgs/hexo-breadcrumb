@@ -32,6 +32,8 @@ breadcrumb:
     content: '/'
     # Applied on ::after pseudo element.
     style: 'font-weight: bold;'
+    # Customize the margin for breadcrumb items.
+    margin: '0.5rem'
   aria:
     nav: 'Breadcrumb'
   homepage:
@@ -47,6 +49,11 @@ breadcrumb:
       tokens:
         - 'home'
         - 'title'
+  render:
+    # Enable or disable breadcrumb rendering.
+    enable: true
+    # Specify the layout's direction for rendering.
+    direction: 'horizontal' # or 'vertical'
 ```
 
 ### Integration with Hexo themes

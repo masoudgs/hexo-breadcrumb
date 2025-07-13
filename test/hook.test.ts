@@ -175,6 +175,8 @@ describe('Breadcrumb Hook', () => {
           delimiter: {
             content: '/',
             style: 'color: #666;',
+            enable: true,
+            margin: '0.5rem',
           },
           aria: {
             nav: 'Breadcrumb Navigation',
@@ -190,6 +192,10 @@ describe('Breadcrumb Hook', () => {
               tokens: ['home', 'title'],
             },
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 
@@ -227,6 +233,8 @@ describe('Breadcrumb Hook', () => {
           delimiter: {
             content: '/',
             style: 'color: #666;',
+            enable: true,
+            margin: '0.5rem',
           },
           aria: {
             nav: 'Breadcrumb Navigation',
@@ -242,6 +250,10 @@ describe('Breadcrumb Hook', () => {
               tokens: ['home', 'title'],
             },
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 
@@ -279,6 +291,8 @@ describe('Breadcrumb Hook', () => {
           delimiter: {
             content: '/',
             style: 'color: #666;',
+            enable: true,
+            margin: '0.5rem',
           },
           aria: { nav: 'Custom Breadcrumb' },
           homepage: {
@@ -294,6 +308,10 @@ describe('Breadcrumb Hook', () => {
               tokens: ['home', 'title'],
             },
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 
@@ -311,6 +329,8 @@ describe('Breadcrumb Hook', () => {
           delimiter: {
             content: '/',
             style: 'color: #666;',
+            enable: true,
+            margin: '0.5rem',
           },
           aria: {},
           homepage: {
@@ -326,6 +346,10 @@ describe('Breadcrumb Hook', () => {
               tokens: ['home', 'title'],
             },
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 
@@ -345,6 +369,8 @@ describe('Breadcrumb Hook', () => {
           delimiter: {
             content: '/',
             style: 'color: #666;',
+            enable: true,
+            margin: '0.5rem',
           },
           aria: {
             nav: 'Breadcrumb Navigation',
@@ -359,6 +385,10 @@ describe('Breadcrumb Hook', () => {
             },
             // Missing page layout
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 
@@ -393,6 +423,10 @@ describe('Breadcrumb Hook', () => {
               tokens: ['home', 'title'],
             },
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 
@@ -450,6 +484,8 @@ describe('Breadcrumb Hook', () => {
           delimiter: {
             content: '/',
             style: 'color: #666;',
+            enable: true,
+            margin: '0.5rem',
           },
           aria: {
             nav: 'Breadcrumb Navigation',
@@ -467,6 +503,10 @@ describe('Breadcrumb Hook', () => {
               tokens: ['home', 'title'],
             },
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 
@@ -622,6 +662,10 @@ describe('Breadcrumb Hook', () => {
               tokens: ['home', 'title'],
             },
           ],
+          render: {
+            enable: true,
+            direction: 'horizontal',
+          },
         },
       });
 

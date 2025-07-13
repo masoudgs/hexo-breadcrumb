@@ -47,10 +47,11 @@ describe('Breadcrumb Config', () => {
 
     it('should handle empty strings, nulls, or undefined in optional fields', () => {
       const config: any = {
-        delimiter: { content: '' },
+        delimiter: { content: '', enable: true, style: '', margin: '0.5rem' },
         aria: { nav: '' },
         homepage: { title: undefined },
         templates: [{ layout: 'post', tokens: ['home', 'title'] }],
+        render: { enable: true, direction: 'horizontal' },
       };
       const result = validateBreadcrumbConfig(config);
       expect(result.delimiter.content).toBe('');
@@ -66,6 +67,8 @@ describe('Breadcrumb Config', () => {
         delimiter: {
           style: 'color: #999;',
           content: '/',
+          enable: true,
+          margin: '0.5rem',
         },
         aria: {
           nav: 'Breadcrumb navigation',
@@ -83,6 +86,10 @@ describe('Breadcrumb Config', () => {
             tokens: ['home', 'title'],
           },
         ],
+        render: {
+          enable: true,
+          direction: 'horizontal',
+        },
       };
 
       const result = validateBreadcrumbConfig(validConfig);
@@ -175,6 +182,8 @@ describe('Breadcrumb Config', () => {
         delimiter: {
           style: 'color: #666; margin: 0 8px;',
           content: '›',
+          enable: true,
+          margin: '0.5rem',
         },
         aria: {
           nav: 'Site navigation breadcrumb',
@@ -192,6 +201,10 @@ describe('Breadcrumb Config', () => {
             tokens: ['home', 'title'],
           },
         ],
+        render: {
+          enable: true,
+          direction: 'horizontal',
+        },
       };
 
       const result = validateBreadcrumbConfig(complexConfig);
@@ -205,6 +218,8 @@ describe('Breadcrumb Config', () => {
         delimiter: {
           style: 'color: #999;',
           content: '/',
+          enable: true,
+          margin: '0.5rem',
         },
         aria: {
           nav: 'Breadcrumb',
@@ -218,6 +233,10 @@ describe('Breadcrumb Config', () => {
             tokens: ['home', 'category', 'title'],
           },
         ],
+        render: {
+          enable: true,
+          direction: 'horizontal',
+        },
       };
 
       const result = breadcrumbConfigSchema.parse(validConfig);
@@ -264,13 +283,17 @@ describe('Breadcrumb Config', () => {
             tokens: ['home', 'invalid-token'],
           },
         ],
+        render: {
+          enable: true,
+          direction: 'horizontal',
+        },
       };
 
       const result = breadcrumbConfigSchema.safeParse(invalidConfig);
       expect(result.success).toBe(false);
       if (!result.success) {
         expect(result.error.issues).toHaveLength(1);
-        expect(result.error.issues[0].message).toContain(
+        expect(result.error.issues[0]?.message).toContain(
           `Invalid option: expected one of "home"|"category"|"title"`
         );
       }

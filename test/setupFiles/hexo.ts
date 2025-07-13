@@ -11,6 +11,8 @@ const mockBreadcrumbConfig: BreadcrumbConfig = {
   delimiter: {
     content: '/',
     style: 'color: #666;',
+    enable: true,
+    margin: '0.5rem',
   },
   aria: {
     nav: 'Breadcrumb Navigation',
@@ -28,6 +30,10 @@ const mockBreadcrumbConfig: BreadcrumbConfig = {
       tokens: ['home', 'title'],
     },
   ],
+  render: {
+    enable: true,
+    direction: 'horizontal',
+  },
 };
 
 const mockHexo = {

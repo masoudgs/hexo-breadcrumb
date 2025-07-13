@@ -15,8 +15,10 @@ const templatesSchema = z
   .min(1);
 const delimiterSchema = z
   .object({
-    style: z.string().optional(),
-    content: z.string().optional(),
+    style: z.string().default(''),
+    content: z.string().default('/'),
+    margin: z.string().default('0.5rem'),
+    enable: z.boolean().default(true),
   })
   .strict();
 const ariaSchema = z
@@ -29,12 +31,19 @@ const homepageSchema = z
     title: z.string().optional(),
   })
   .strict();
+const renderSchema = z
+  .object({
+    enable: z.boolean().default(true),
+    direction: z.enum(['horizontal', 'vertical']).default('horizontal'),
+  })
+  .strict();
 export const breadcrumbConfigSchema = z
   .object({
     delimiter: delimiterSchema,
     aria: ariaSchema,
     homepage: homepageSchema,
     templates: templatesSchema,
+    render: renderSchema,
   })
   .strict();
 

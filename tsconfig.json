@@ -28,12 +28,5 @@
     "moduleResolution": "node"
   },
   "include": ["*.ts", "schemas", "test"],
-  "exclude": [
-    "node_modules",
-    "test",
-    "dist",
-    "*.test.ts",
-    "*.spec.ts",
-    "coverage"
-  ]
+  "exclude": ["node_modules", "dist", "coverage"]
 }

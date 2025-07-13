@@ -1,6 +1,6 @@
 {
   "name": "hexo-breadcrumb",
-  "type": "module",
+  "type": "commonjs",
   "version": "1.2.4",
   "description": "Generate breadcrumb for Hexo",
   "main": "dist/index.js",
@@ -10,9 +10,10 @@
     "global.d.ts"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.json && npm run bundle",
-    "build:watch": "tsc --watch",
+    "build": "rm -rf dist && nr ts:build && npm run bundle",
     "bundle": "node esbuild.config.mjs",
+    "ts:check": "tsc -p tsconfig.json --noEmit",
+    "ts:build": "tsc -p tsconfig.json",
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
     "format:check": "prettier '**/*.{js,ts,md,yml,json}' --check",
