@@ -57,6 +57,10 @@ export class Breadcrumb {
    * Gets the category links from data.
    */
   private getCategoryLinks(data: LayoutData): Links {
+    if (!data.categories || !data.categories.data) {
+      return [];
+    }
+
     return (data.categories.data as DataCategory).map(
       (category): Link => ({
         title: category.name,
