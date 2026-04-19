@@ -183,9 +183,11 @@ export class Breadcrumb {
   private getNavigationLinks(links: Links): string {
     const linkClassName = this.getLinkClassName();
     const linksLi = links
-      .map((link) => {
+      .map((link, index) => {
         const span = `<span>${link.title}</span>`;
-        const a = `<a href="${link.url}">${span}</a>`;
+        const isLastLink = index === links.length - 1;
+        const ariaAttributes = isLastLink ? ' aria-current="page"' : '';
+        const a = `<a href="${link.url}"${ariaAttributes}>${span}</a>`;
         return `<li class="${linkClassName}">${a}</li>`;
       })
       .join('');
@@ -209,6 +211,26 @@ export class Breadcrumb {
   }
 
   /**
+   * Generates structured data (JSON-LD) for breadcrumbs.
+   * This improves SEO and accessibility for screen readers.
+   * @see https://schema.org/BreadcrumbList
+   */
+  private getStructuredData(links: Links): string {
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: links.map((link, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: link.title,
+        item: link.url,
+      })),
+    };
+
+    return `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`;
+  }
+
+  /**
    * Renders breadcrumb
    * as HTML markup for the given page or post.
    */
@@ -222,6 +244,7 @@ export class Breadcrumb {
     const links = this.getLinks(data);
     const orderedLinks = this.getOrderedLinksByTemplates(data, links);
     const navigationStyle = this.getNavigationStyle();
+    const structuredData = this.getStructuredData(orderedLinks);
     const navigationAttributes = {
       id: this.getNavigationId(),
       'aria-label': this.getNavigationAriaLabel(),
@@ -235,7 +258,11 @@ export class Breadcrumb {
     const navigationEnd = `</nav>`;
 
     return (
-      navigationStyle + navigationStart + navigationContent + navigationEnd
+      structuredData +
+      navigationStyle +
+      navigationStart +
+      navigationContent +
+      navigationEnd
     );
   }
 }
