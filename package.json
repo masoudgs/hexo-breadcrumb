@@ -1,7 +1,7 @@
 {
   "name": "hexo-breadcrumb",
   "type": "commonjs",
-  "version": "1.2.4",
+  "version": "1.3.1",
   "description": "Generate breadcrumb for Hexo",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
