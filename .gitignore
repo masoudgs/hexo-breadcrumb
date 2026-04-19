@@ -6,3 +6,9 @@ node_modules/
 
 # Yalc
 **/.yalc
+
+# Test coverage
+coverage/
+
+# Build output
+dist/

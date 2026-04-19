@@ -1,15 +1,27 @@
 {
   "name": "hexo-breadcrumb",
+  "type": "commonjs",
   "version": "1.2.4",
   "description": "Generate breadcrumb for Hexo",
-  "main": "index.js",
-  "types": "global.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "global.d.ts"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && npm run format",
-    "build:watch": "tsc --watch",
-    "lint": "eslint .",
-    "format": "prettier '**/*.{js,ts,md,yml,json}' --write",
-    "version": "npm run lint",
+    "build": "rm -rf dist && nr ts:build && npm run bundle",
+    "bundle": "node esbuild.config.mjs",
+    "ts:check": "tsc -p tsconfig.json --noEmit",
+    "ts:build": "tsc -p tsconfig.json",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:check": "prettier '**/*.{js,ts,md,yml,json}' --check",
+    "format:fix": "prettier '**/*.{js,ts,md,yml,json}' --write",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "version": "npm run lint:check && npm run test:run && npm run build && git add .",
     "prepare": "husky || true"
   },
   "repository": {
@@ -31,18 +43,29 @@
   "engines": {
     "node": ">=7.5.0"
   },
+  "dependencies": {
+    "zod": "4.0.5"
+  },
   "devDependencies": {
+    "@eslint/js": "9.31.0",
     "@types/hexo": "3.8.12",
-    "@typescript-eslint/eslint-plugin": "8.6.0",
-    "@typescript-eslint/parser": "8.6.0",
-    "eslint": "8.57.1",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-import-resolver-typescript": "3.6.3",
-    "eslint-plugin-import": "2.30.0",
-    "eslint-plugin-prettier": "5.2.1",
-    "husky": "9.1.6",
-    "lint-staged": "15.2.10",
-    "typescript": "5.5.4"
+    "@typescript-eslint/eslint-plugin": "8.36.0",
+    "@typescript-eslint/parser": "8.36.0",
+    "@vitest/coverage-v8": "3.2.4",
+    "@vitest/ui": "3.2.4",
+    "esbuild": "0.25.6",
+    "eslint": "9.31.0",
+    "eslint-config-prettier": "10.1.5",
+    "eslint-import-resolver-typescript": "4.4.4",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-prettier": "5.5.1",
+    "globals": "^16.3.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.2",
+    "prettier": "3.6.2",
+    "tap-junit": "5.0.4",
+    "typescript": "5.8.3",
+    "vitest": "3.2.4"
   },
   "husky": {
     "hooks": {
@@ -51,10 +74,10 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint --fix"
+      "pnpm run lint:check"
     ],
     "*.{js,ts,md,yml,json}": [
-      "npm run format"
+      "npm run format:check"
     ]
   }
 }
